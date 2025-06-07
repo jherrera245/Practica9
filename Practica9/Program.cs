@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Practica9.Data;
 using Practica9.Areas.Identity.Data;
+using QuestPDF.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddDbContext<IdentityDbContext>(
 builder.Services.AddRazorPages();
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityDbContext>();
+
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 var app = builder.Build();
 

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Export to PDF";
+    var categories = ViewBag.Categories as List<Category>;
+}
+<div class="row mt-5">
+    <div class="col-12">
+        <form action="DownloadPdf" method="post">
+            <div class="card">
+                <div class="card-body">
+                   <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>Categoría</label>
+                            <select class="form-control" name="categoryId">
+                                <option value="">-- Todas --</option>
+                                @foreach (var cat in categories)
+                                {
+                                    <option value="@cat.CategoryID">@cat.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Precio minimo</label>
+                            <input class="form-control" type="number" name="minPrice" step="0.01" />
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label>Precio maximo</label>
+                            <input class="form-control" type="number" name="maxPrice" step="0.01" />
+                        </div>
+                   </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Exportar a PDF</button>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Volver</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> 
